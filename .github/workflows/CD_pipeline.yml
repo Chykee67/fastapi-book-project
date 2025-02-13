@@ -20,7 +20,7 @@ jobs:
           ecr: auto
           logout: true
           username: ${{secrets.DOCKER_HUB_USERNAME}}
-          password: ${{secrets.DOCKER_ET_FASTAPI}}
+          password: ${{secrets.DOCKER_HUB_ACCESS}}
 
       - name: extract docker image metadata
         id: meta

@@ -7,7 +7,7 @@ on:
 
 jobs:
   build_and_push_docker_image:
-    name: build and push docker image to docker hub
+    name: build, push docker image to docker hub
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:

@@ -3,7 +3,7 @@ name: Test Fastapi-app
 on:
   pull_request:
     types: [opened, synchronize, reopened, closed]
-    branches: [feature/Amazingfeature]
+    branches: [main]
 
 jobs:
   test:

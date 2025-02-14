@@ -6,8 +6,8 @@ on:
     branches: [main]
 
 jobs:
-  build_and_push_docker_image:
-    name: build, push docker image to docker hub
+  deploy:
+    name: deploy
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
@@ -35,11 +35,6 @@ jobs:
           tags: chykee67/fastapi-nginx-app:latest
           labels: ${{steps.meta.outputs.labels}}
 
-  deploy:
-    name: deploy
-    runs-on: ubuntu-latest
-    needs: [build_and_push_docker_image]
-    steps:
       - name: run docker compose on app server
         uses: appleboy/ssh-action@v1.2.0
         with:

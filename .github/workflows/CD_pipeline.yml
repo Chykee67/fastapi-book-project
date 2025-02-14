@@ -26,13 +26,13 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: chykee67/fastapi-app
+          images: chykee67/fastapi-nginx-app
 
       - name: build and push docker image
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: chykee67/fastapi-app:latest
+          tags: chykee67/fastapi-nginx-app:latest
           labels: ${{steps.meta.outputs.labels}}
 
   deploy:

@@ -1,4 +1,4 @@
-name: Deploy code changes to fastapi-app
+name: deploy
 
 on:
   pull_request:

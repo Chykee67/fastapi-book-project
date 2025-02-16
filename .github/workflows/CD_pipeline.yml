@@ -4,8 +4,6 @@ name: Build, push and deploy docker image
 #Execute workflow on merging code to main(push) or
 #closed pull_requests with main as base branch
 on:
-  push:
-    branches: [main]
   pull_request:
     types: [closed]
     branches: [main]

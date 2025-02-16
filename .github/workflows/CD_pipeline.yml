@@ -1,12 +1,20 @@
-name: deploy
+name: Build, push and deploy docker image
 
+
+#Execute workflow on merging code to main(push) or
+#closed pull_requests with main as base branch
 on:
   push:
     branches: [main]
+  pull_request:
+    types: [closed]
+    branches: [main]
 
 jobs:
-  deploy:
-    name: deploy
+  #build docker container image and save to docker hub repo
+  build_and_push:
+    if: ${{github.event.pull_request.merged == true}} #only build container if pull_request was merged successfully
+    name: build
     runs-on: ubuntu-latest
     steps:
       - name: checkout the code
@@ -32,7 +40,13 @@ jobs:
           push: true
           tags: chykee67/fastapi-nginx-app:latest
           labels: ${{steps.meta.outputs.labels}}
-
+  
+  #if build_and_push was successful, then deploy changes to server
+  deploy:
+    name: deploy updates to server
+    runs-on: ubuntu-latest
+    needs: [build_and_push]  #ensures this only runs if build_and_push was successful
+    steps:
       - name: run docker compose on app server
         uses: appleboy/ssh-action@v1.2.0
         with:

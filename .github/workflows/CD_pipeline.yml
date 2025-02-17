@@ -9,6 +9,7 @@ on:
     branches: [main]
 
 jobs:
+
   #build docker container image and save to docker hub repo
   build_and_push:
     if: ${{github.event.pull_request.merged == true}} #only build container if pull_request was merged successfully
